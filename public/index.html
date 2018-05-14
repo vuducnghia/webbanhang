@@ -12,15 +12,19 @@
 <body ng-app="app">
     <div ui-view="navbar"></div>
     <div ui-view="content"></div>
-    <div class="footer"></div>
-
+    <!-- <div class="footer"></div> -->
+    <div>vuduc</div>
     <!-- important sort script lib -->
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/ngstorage/ngStorage.js"></script>
 
-
+    <!--  -->
     <script src="app/app.module.js"></script>
+    <script src="app/app.state.js"></script>
+    <script src="app/layouts/navbar/navbar.controller.js"></script>
+    <script src="app/home/home.state.js"></script>
+    <script src="app/home/home.controller.js"></script>
 </body>
 
 </html>
