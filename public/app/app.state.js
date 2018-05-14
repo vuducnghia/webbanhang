@@ -4,23 +4,27 @@
     angular.module('app')
         .config(stateConfig);
 
-    stateConfig.$inject = ['$stateProvider']
+    stateConfig.$inject = ['$stateProvider', '$locationProvider']
 
-    function stateConfig($stateProvider) {
+    function stateConfig($stateProvider, $locationProvider) {
+        $locationProvider.html5Mode(true);
         // $urlRouterProvider.otherwise('/app');  // moi duong dan k hop le
         $stateProvider.state('app', {
             abstract: true,
             views: {
                 'navbar@': {
-                    template: 'public/layouts/navbar/navbar.html',
+                    templateUrl: '/app/layouts/navbar/navbar.html',
                     controller: 'NavbarController',
                     controllerAs: 'vm'
                 }
-                // ,
-                // 'footter':{
-                //     templateUrl:'layouts/'
-                // }
             }
+        })
+        .state('content',{
+            parent: 'app',
+            url: '/d',
+            templateUrl: 'home/all.html',
+            controller: 'HomeController',
+            controllerAs: 'vm'
         })
     }
 })();
