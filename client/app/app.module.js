@@ -7,6 +7,5 @@
 
     run.$inject = ['$http', '$rootScope', '$localStorage', '$state']
     function run($http, $rootScope, $localStorage, $state){
-        console.log(11)
     }
 })();
