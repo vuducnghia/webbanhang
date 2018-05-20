@@ -16,7 +16,7 @@ app.set('view engine', 'html');
 
 app.use(express.static(path.join(__dirname, './client')));
 app.use(passport.initialize());
-
+app.use(passport.session())
 app.use('/api', api)
 app.get('/*', (req, res) => {
     res.sendFile(__dirname + '/client/index.html')

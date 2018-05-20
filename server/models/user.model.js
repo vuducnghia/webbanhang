@@ -7,13 +7,4 @@ const user = db.define('user', {
 })
 db.sync()
 
-// const user = {
-
-//     getAllUser: function (callback) {
-//         return db.query("Select * from user", callback);
-//     },
-//     findByUsername: function (username, callback) {
-//         return db.query('select username from user where username= ?', [username], callback)
-//     }
-// }
 module.exports = user
