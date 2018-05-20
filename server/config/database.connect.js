@@ -1,10 +1,19 @@
-var mysql = require('mysql');
-var connection = mysql.createPool({
+const sequelize = require('sequelize')
 
-    host: 'localhost',
-    user: 'root',
+const connection = new sequelize({
+    database: 'webstore',
+    username: 'root',
     password: '12345',
-    database: 'webstore'
+    host: 'localhost',
+    port: 3306,
+    dialect: 'mysql',
+    define: {
+        freezeTableName: true
+    }
+})
 
-});
+connection.authenticate()
+    .then(() => console.log('connect success'))
+    .catch(() => console.log(err.message))
+
 module.exports = connection;
