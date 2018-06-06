@@ -1,7 +1,7 @@
 const user = require('../models/user.model')
 const bcrypt = require('bcrypt-nodejs');
-const jwt = require('jsonwebtoken');
 const config = require('../config/secretJWT')
+
 exports.getAllUser = (req, res) => {
     user.findAll({ raw: true }).then(aruser => aruser.forEach(user => console.log(user)))
     res.json("value");
@@ -30,7 +30,7 @@ exports.createUser = (req, res) => {
                     });
             })
     })
-
+    
 }
 exports.deleteUser = (req, res) => {
     user.destroy({ where: { username: req.body.username } }).then((user => {
@@ -43,20 +43,3 @@ exports.findUserByUsername = (req, res) => {
     })
 }
 
-exports.login = (req, res) => {
-    user.findOne({ where: { username: req.body.username } }).then((user) => {
-        if (!user) {
-            res.send({ success: false, msg: 'Authentication failed. User not found.' });
-        } else {
-            bcrypt.compare(req.body.password, user.password, function (err, isMatch) {
-                if (!err && isMatch) {
-                    console.log(user.get({ plain: true }))
-                    var token = jwt.sign(user.get({ plain: true }), config.secret);
-                    res.json({ success: true, token: 'JWT ' + token, username: req.body.username });
-                } else {
-                    res.send({ success: false, msg: 'Authentication failed. Wrong password.' });
-                }
-            });
-        }
-    })
-}
