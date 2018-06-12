@@ -3,7 +3,7 @@ const sequelize = require('sequelize')
 const connection = new sequelize({
     database: 'webstore',
     username: 'root',
-    password: '12345',
+    password: 'vinhlq',
     host: 'localhost',
     port: 3306,
     dialect: 'mysql',
