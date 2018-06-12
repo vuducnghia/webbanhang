@@ -1,4 +1,4 @@
-const db = require('../config/database.connect')
+const db = require('../../config/database.connect')
 const sequelize = require('sequelize')
 
 const user = db.define('user', {

@@ -1,6 +1,6 @@
-const user = require('../models/user.model')
+const user = require('./user.model')
 const bcrypt = require('bcrypt-nodejs');
-const config = require('../config/secretJWT')
+const config = require('../../config/secretJWT')
 
 exports.getAllUser = (req, res) => {
     user.findAll({ raw: true }).then(aruser => aruser.forEach(user => console.log(user)))
