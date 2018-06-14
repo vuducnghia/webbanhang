@@ -2,10 +2,11 @@
 
 const express = require('express');
 const passport = require('passport')
-
+// var signToken = require('../auth.service')
 var router = express.Router();
 
 router.post('/', function (req, res, next) {
+    console.log(req.body)
     passport.authenticate('local', function (err, user, info) {
         var error = err || info;
         if (error) {
@@ -14,8 +15,7 @@ router.post('/', function (req, res, next) {
         if (!user) {
             return res.status(404).json({ message: 'Something went wrong, please try again.' });
         }
-
-        var token = signToken(user._id, user.role);
+        var token = require('../auth.service').signToken(user._id, user.role);
         res.json({ token });
     })(req, res, next);
 });

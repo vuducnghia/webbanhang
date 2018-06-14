@@ -3,7 +3,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
 
 function localAuthenticate(User, username, password, done) {
-    User.findOne({
+    User.find({
         where: {
             username: username
         }
@@ -13,24 +13,23 @@ function localAuthenticate(User, username, password, done) {
                 message: 'This username is not registered.'
             });
         }
-        user.authenticate(password, (authError, authenticated) => {
-            if (authError) {
-                return done(authError)
-            }
-            if (!authenticated) {
+        
+        bcrypt.compare(password, user.password, function (err, result) {
+            if (err) { return done(err) }
+            if (!result) {
                 return done(null, false, { message: 'This password is not correct.' });
-            } else {
-                return done(null, user);
             }
+            else
+                return done(null, user);
         })
     }).catch(err => done(err));
 }
 
-module.exports = function setup(User) {
+exports.setup = function (User) {
     passport.use(new LocalStrategy({
         usernameField: 'username',
         passwordField: 'password'
-    }, function (username, passport, done) {
+    }, function (username, password, done) {
         return localAuthenticate(User, username, password, done);
     }))
 }

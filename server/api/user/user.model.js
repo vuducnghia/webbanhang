@@ -16,7 +16,8 @@ const user = db.define('user', {
     }
 }, {
         instanceMethods: {
-            authenticate(password, callback) {
+            authenticate(password, callback) { // cho nay khong hieu sao lai bug, k dung duoc phuong thuc
+                console.log(6)
                 if (!callback)
                     bcrypt.compare(password, this.password, function (err, result) {
                         if (err) { callback(err); }
@@ -24,7 +25,7 @@ const user = db.define('user', {
                             return callback(null, false, { message: 'Incorrect username and password' });
                         }
                         else
-                            return callback(null, user);
+                            return callback(null, true);
                     })
             }
         }

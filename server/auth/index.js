@@ -2,7 +2,7 @@
 
 const express = require('express');
 var router = express.Router();
-var User = require('../api/user')
+var User = require('../api/user/user.model')
 // Passport Configuration
 require('./local/passport').setup(User);
 
