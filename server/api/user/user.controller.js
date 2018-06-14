@@ -1,12 +1,12 @@
-const user = require('../models/user.model')
+const user = require('./user.model')
 const bcrypt = require('bcrypt-nodejs');
-const config = require('../config/secretJWT')
+const config = require('../../config/secretJWT')
 
-exports.getAllUser = (req, res) => {
+exports.getAll = (req, res) => {
     user.findAll({ raw: true }).then(aruser => aruser.forEach(user => console.log(user)))
     res.json("value");
 }
-exports.createUser = (req, res) => {
+exports.create = (req, res) => {
     user.findOne({ where: { username: req.body.username } }).then((u) => {
         if (u)
             res.json('username existed');
@@ -23,21 +23,22 @@ exports.createUser = (req, res) => {
 
                         user.create({
                             username: req.body.username,
-                            password: hash
+                            password: hash,
+                            role: 'user'
                         }).then(user => {
                             res.json(user.get({ plain: true }));
                         })
                     });
             })
     })
-    
+
 }
-exports.deleteUser = (req, res) => {
+exports.delete = (req, res) => {
     user.destroy({ where: { username: req.body.username } }).then((user => {
         res.json('delete success');
     }))
 }
-exports.findUserByUsername = (req, res) => {
+exports.findByUsername = (req, res) => {
     user.findOne({ where: { username: req.body.username } }).then((user) => {
         res.json(user);
     })
