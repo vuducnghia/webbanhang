@@ -5,8 +5,10 @@
         .module('app')
         .controller('ProductDetailController', ProductDetailController);
 
-    ProductDetailController.$inject = ['$state']
-    function ProductDetailController($state) {
+    ProductDetailController.$inject = ['$state', 'productData']
+    function ProductDetailController($state, productData) {
+        debugger;
+        let data = productData;
         var responsiveNav = $('#responsive-nav'),
             catToggle = $('#responsive-nav .category-nav .category-header'),
             catList = $('#responsive-nav .category-nav .category-list'),
