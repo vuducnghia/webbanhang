@@ -6,3 +6,7 @@ exports.getAll = (req, res) => {
         res.json(product);
     })
 }
+
+exports.getData = (req, res) => {
+    res.json("quang vinh");
+}
