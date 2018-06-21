@@ -6,6 +6,7 @@ exports.getAll = (req, res) => {
     user.findAll({ raw: true }).then(aruser => aruser.forEach(user => console.log(user)))
     res.json("value");
 }
+
 exports.create = (req, res) => {
     user.findOne({ where: { username: req.body.username } }).then((u) => {
         if (u)
