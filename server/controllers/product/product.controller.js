@@ -8,5 +8,6 @@ exports.getAll = (req, res) => {
 }
 
 exports.getData = (req, res) => {
+    console.log(1111111111)
     res.json("quang vinh");
 }
