@@ -2,11 +2,10 @@
 
 const express = require('express');
 const passport = require('passport')
-// var signToken = require('../auth.service')
 var router = express.Router();
 
 router.post('/', function (req, res, next) {
-    console.log(req.body)
+
     passport.authenticate('local', function (err, user, info) {
         var error = err || info;
         if (error) {

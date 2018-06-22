@@ -26,6 +26,7 @@ function localAuthenticate(User, username, password, done) {
 }
 
 exports.setup = function (User) {
+
     passport.use(new LocalStrategy({
         usernameField: 'username',
         passwordField: 'password'
