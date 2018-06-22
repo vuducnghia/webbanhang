@@ -13,7 +13,7 @@
         vm.login = function () {
             Auth.login(vm.user, function (res) {
                 if (res.success){
-
+                    $('#btnclose').click()
                 }else{
                     vm.error = res.massage
                 }         

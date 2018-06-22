@@ -19,9 +19,10 @@
         function login(user, callback) {
 
             var response;
-            return $http.post('auth/local', user).then(function (user) {
-                if (user != null) {
-                    localStorage.setItem('id_token', user.data.token)
+            return $http.post('auth/local', user).then(function (res) {
+                if (res != null) {
+                    localStorage.setItem('id_token', res.token);
+                    localStorage.setItem('id_token', res.data.token)
                     response = { success: true }
                 } else {
                     response = { success: false, massage: 'Username or password is incorrect' }
@@ -31,7 +32,8 @@
         }
 
         function logout() {
-
+            localStorage.removeItem('user');
+            localStorage.removeItem('id_token');
         }
 
         function handleSuccess(res) {
@@ -43,18 +45,6 @@
                 return { success: false, massage: error }
             }
         }
-        // function activateAccount (key, callback) {
-        //     var cb = callback || angular.noop;
-
-        //     return Activate.get(key,
-        //         function (response) {
-        //             return cb(response);
-        //         },
-        //         function (err) {
-        //             return cb(err);
-        //         }.bind(this)).$promise;
-        // }
-
-        //function private
+        
     }
 })();
